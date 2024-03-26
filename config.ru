@@ -1,11 +1,3 @@
-require "roda"
-
-class App < Roda
-  route do |r|
-    r.root do
-      "hello world"
-    end
-  end
-end
+require_relative "app"
 
 run App.freeze.app

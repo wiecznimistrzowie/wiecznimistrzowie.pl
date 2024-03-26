@@ -18,9 +18,25 @@ jobs:
           name: standardrb
           path: tmp/standard/output.xml
 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.0
+          bundler-cache: true
+      - name: Run tests
+        run: bundle exec rake test A="--junit"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test
+          path: report.xml
+
   publish-results:
     needs:
       - lint
+      - test
     runs-on: ubuntu-latest
     if: always()
     steps:
@@ -29,5 +45,9 @@ jobs:
           path: artifacts
       - uses: EnricoMi/publish-unit-test-result-action@v2
         with:
-          files: artifacts/standard/standard/output.xml
+          files: artifacts/standardrb/output.xml
           check_name: "Lint results 👮‍♂️"
+      - uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: artifacts/test/report.xml
+          check_name: "Test results"
