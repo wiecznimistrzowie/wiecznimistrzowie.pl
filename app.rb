@@ -1,9 +1,10 @@
 require "roda"
+require_relative "views/hello_view"
 
 class App < Roda
   route do |r|
     r.root do
-      "hello world"
+      HelloView.call
     end
   end
 end

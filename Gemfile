@@ -2,6 +2,7 @@
 
 source "https://rubygems.org"
 
+gem "phlex"
 gem "rake"
 gem "roda"
 
