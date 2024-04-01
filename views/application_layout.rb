@@ -8,9 +8,11 @@ class ApplicationLayout < ApplicationView
 
     html do
       head do
-        title { "Hello World" }
+        meta charset: "utf-8"
         meta name: "viewport", content: "width=device-width,initial-scale=1"
-        link rel: "stylesheet", href: "pico.min.css"
+        link rel: "stylesheet", href: "main-VKIGDJ4G.css"
+
+        title { "Hello World" }
       end
 
       body do
