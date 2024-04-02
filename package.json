@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "node esbuild.config.mjs"
+    "build": "node assets/build.mjs",
+    "serve": "node assets/serve.mjs"
   },
   "devDependencies": {
     "@picocss/pico": "^2.0.6",
