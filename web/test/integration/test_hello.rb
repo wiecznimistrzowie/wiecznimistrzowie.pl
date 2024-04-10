@@ -4,9 +4,9 @@ require "capybara/minitest/spec"
 
 require "test_helper"
 
-require "app"
+require "lib/web"
 
-Capybara.app = App.freeze.app
+Capybara.app = Web::App.freeze.app
 
 class TestHello < Minitest::Spec
   include Capybara::DSL

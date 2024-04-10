@@ -1,37 +1,45 @@
 ---
-name: Build
+name: Web
 on:
   - push
 jobs:
   lint:
     runs-on: ubuntu-latest
+    env:
+      WORKING_DIRECTORY: web
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.0
           bundler-cache: true
+          working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: Lint code
         run: bundle exec standardrb --format RuboCop::Formatter::JUnitFormatter --out tmp/standard/output.xml
+        working-directory: ${{ env.WORKING_DIRECTORY }}
       - uses: actions/upload-artifact@v4
         with:
           name: standardrb
-          path: tmp/standard/output.xml
+          path: ${{ env.WORKING_DIRECTORY }}/tmp/standard/output.xml
 
   test:
     runs-on: ubuntu-latest
+    env:
+      WORKING_DIRECTORY: web
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.0
           bundler-cache: true
+          working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: Run tests
         run: bundle exec rake test A="--junit"
+        working-directory: ${{ env.WORKING_DIRECTORY }}
       - uses: actions/upload-artifact@v4
         with:
           name: test
-          path: report.xml
+          path: ${{ env.WORKING_DIRECTORY }}/report.xml
 
   publish-results:
     needs:
