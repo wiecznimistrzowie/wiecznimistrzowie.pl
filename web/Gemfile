@@ -5,6 +5,7 @@ source "https://rubygems.org"
 gem "phlex"
 gem "rake"
 gem "roda"
+gem "zeitwerk"
 
 group :development, :test do
   gem "capybara"
