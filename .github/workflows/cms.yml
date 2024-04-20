@@ -1,5 +1,5 @@
 ---
-name: Web
+name: CMS
 
 on:
   - push
@@ -8,7 +8,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     env:
-      WORKING_DIRECTORY: web
+      WORKING_DIRECTORY: cms
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
@@ -27,7 +27,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      WORKING_DIRECTORY: web
+      WORKING_DIRECTORY: cms
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
